@@ -1,0 +1,5 @@
+I need an MVP healthcare app (JOBA) that:  
+1. Extracts fields from medical/insurance PDFs (digital + scanned).  
+2. Outputs structured JSON.  
+3. Accepts clinician input (text/voice), auto-drafts concise answers via AI (editable).  
+4. Fills answers back into the PDF → preview → export.
