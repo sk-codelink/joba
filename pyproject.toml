@@ -1,0 +1,2 @@
+app = "backend.main:app"
+build = "python build.py"
