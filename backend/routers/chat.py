@@ -9,7 +9,7 @@ router = APIRouter()
 class ChatRequest(BaseModel):
     user_message : str
 
-@router.post("/")
+@router.post("/chat")
 async def chat(request : ChatRequest):
     try:
         client = genai.Client(api_key=api_key)

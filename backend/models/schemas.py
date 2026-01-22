@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any
 
 class PDFUploadResponse(BaseModel):
     """Response for PDF upload and extraction"""

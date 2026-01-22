@@ -1,8 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
-from fastapi.responses import JSONResponse
 import time
 
-from models.schemas import PDFUploadResponse, ErrorResponse
+from models.schemas import PDFUploadResponse
 from services.field_extraction_service import FieldExtractionService
 
 router = APIRouter()
@@ -43,8 +42,8 @@ async def extract_pdf_fields(file: UploadFile = File(...)):
                 detail="No form fields found in the PDF. This might not be a fillable form."
             )
         
-        # Prepare fields for frontend
-        frontend_data = field_extractor.prepare_fields_for_frontend(extracted_result)
+        # Prepare fields for frontend (pass PDF content for option label extraction)
+        frontend_data = field_extractor.prepare_fields_for_frontend(extracted_result, pdf_content)
         
         processing_time = time.time() - start_time
         print(f"Field extraction completed in {processing_time:.2f} seconds")
@@ -61,8 +60,3 @@ async def extract_pdf_fields(file: UploadFile = File(...)):
             status_code=500,
             detail=f"Processing failed: {str(e)}"
         )
-
-@router.get("/test")
-async def test_endpoint():
-    """Test endpoint to verify the API is working"""
-    return {"message": "Extract API is working", "timestamp": time.time()}
